@@ -14,6 +14,7 @@ class IndexController extends ControllerBase
     	$user = new Users();
     	$user->name = 'zhang3';
     	$user->email = 'a@a.com';
+        $user->save();
 		if ($user->save() == false) {
 		    echo "Umh, We can't store user right now: \n";
 		    foreach ($user->getMessages() as $message) {
