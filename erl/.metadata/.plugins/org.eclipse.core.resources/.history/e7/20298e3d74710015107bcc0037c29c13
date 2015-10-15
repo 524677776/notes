@@ -1,0 +1,24 @@
+%% @author Administrator
+%% @doc @todo Add description to area_server0.
+
+
+-module(area_server0).
+
+%% ====================================================================
+%% API functions
+%% ====================================================================
+-export([loop/0]).
+
+
+
+%% ====================================================================
+%% Internal functions
+%% ====================================================================
+
+loop() ->
+	receive
+		{rectangle, Width, Ht}	->
+			io:format("Format", [Width * Ht]),
+			loop();
+		loop()
+	end.

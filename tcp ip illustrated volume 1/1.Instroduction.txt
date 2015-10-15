@@ -1,0 +1,64 @@
+1.1 Introduction
+
+1.2 Layering
+	application 
+		handles the details of the particular application.
+		telnet for remote login.
+		ftp the file transfer protocol
+		smtp the simple mail transfer protocol for electronic mail 
+		snmp the simple network management protocol.
+	
+	transport
+		provides a flow of data between two hosts, for the application layer above.
+		
+		tcp transmission control protocol.
+			provides a reliable flow of data between two hosts.
+			dividing the data into appropriately sized chunks for the network layer below.
+			
+			the application layer can ignore all these detail.
+			
+		udp user datagram protocol.
+			no guarantee that the datagrams reach the other end.
+			any desired reliability must be add by the application layer.
+		
+	
+	network
+		sometimes called the internet layer.
+		handles the movement of packets around the network. 
+		routing of packets.
+		
+		ip internet protocol 
+		icmp internet control message protocol 
+		igmp internet group management protocol
+	
+	link
+		sometimes called the data-link layer or network interface layer.
+		includes the device driver in the operating system and the network interface card in the computer.
+		(device driver and the network interface card)
+		
+	case:
+		ftp client			-> telnet ->			ftp server
+		
+		one protocol allows the two layers to communicate, and another protocol lets the two ip layers communicate.
+		
+		the application layer is a user progress while the lower three layers are usually implemented in the kernel.
+		
+		the application layer is concerned with the details of the application and not with the movement of data across the network. the lower three layer know nothing about the application but handle all the communication details.
+		
+		ethernet <->  router <->  token ring
+		
+		bridge connect networks at the link layer
+		routers connect networks at the network layer
+		
+		
+1.3 TCP/IP Layering
+
+1.4 Internet Addresses.
+
+
+		
+		
+		
+		
+		
+		
