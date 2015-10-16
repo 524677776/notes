@@ -86,6 +86,11 @@
 		broadcast - destined for all hosts on a given network.
 		multicast - destined for a set of hosts that belong to a multicast group.
 		
+	class A 0-127.
+	class B 128-191.
+	class C 192-223.
+	class D 224-239.
+	class E 240-247.
 		
 1.5 The Domain Name System.
 	dns: domain name system is a distributed database that provides the mapping between ip addresses and hostnames.
@@ -132,16 +137,82 @@
 		4. go back step1.
 		
 1.9 Port Numbers.
+	tcp and udp identify application using 16-bit port numbers.
+	
+	ftp is on tcp port 21.
+	telnet is on tcp port 23.
+	tftp (the trivial file transfer protocol) is on udp port 69.
+	
+	tcp/ip have well-known port numbers between 1 and 1023.
+	the well-known ports are managed by the IANA(internet assigned numbers authority).
+	
+	client port numbers are called ephemeral ports(short lived), since a client exist only as long as the user running the client needs its service.
+	
+	most tcp/ip implementations allocate ephemeral port number between 1024-5000.
+	
+	the well-known port numbers are contained in the file /etc/services on most unix systems.
+		
+	$grep telnet /etc/services
+	$grep domain /etc/services
+		
+	reserved ports are in the range of 1 to 1023.
+	only a progress with superuser privileges can assign itself a reserved port.
+	can be used by some application as part of the authentication between the client and server.
+	
+	
+1.10 Standardization Process.
+		
+	ISOC(internet society) 
+	IAB(internet architecture board)
+	IETE(internet engineering task force)
+	IRTF(internet research task force)
+	
+1.11 RFCs
+	rfcs : request for comment.
+	
+1.12 Standard, Simple Services
+
+1.13 The Internet
+
+	the lowercase internet means multiple networks connected together, using a common protocol suite.
+	the uppercase Internet refers to the collection of hosts around the world that can communicate with each other using tcp/ip. 
+	
+	Internet is an internet, the reverse is not true.
+	
+1.14 Implementations.
+	berkeley-derived implementation to refer to vendor implementations such as sunos 4.x svr4, and aix 3.2 that were originally developed from the berkeley sources.
+
+1.15 Application Programming Interfaces.
+	Two popular application programming interface apis for applications unsing tcp/ip protocols are called:
+	sockets and tli(transport layer interface).
+	
+	sockets sometines called "berkeley sockets" indicating where it was originally developed.
+	tli sometimes called xti(x/open transport interface), recognizing the work done by x/open.
+
+1.16 Test Network.
+
+1.17 Summary.
+	the four layers in the tcp/ip protocol suite : the link layer, network layer, transport layer, application layer.
+	the responsibilities of the four layers.
+	the network layer provides a hop-by-hop service
+	the transport layers provide and end-to-end service.
+	
+	an internet is a collection of networks.
+	the common building block for an internet is a router that connects the networks at the ip layer.
+	the capital-I Internet is an internet that spans the globe and consists of more than 10,000 networks and more than one million computers.
+	
+	on an internet each interface is identified by a unique ip address.
+	the dns provides a dynamic mapping between hostnames and ip addresses.
+	ports numbers are used to identify the applications communicating with each other
+	we said the servers use well-known ports and clients use ephemeral ports.
+	
+	
+	
+	
+		
 
 		
-		
-		
 
-
-		
-		
-		
-		
 
 
 		
