@@ -37,6 +37,54 @@
 	
 	hardware addresses : both frame formats use 48-bit(6 byte) destination and source addresses.
 	
+2.3 Trailer Encapsulation.
+	
+	trailer encapsulation is another form of encapsulation used on enthernets,
+	it was an experiment to improved performance by rearranging the order of the fields in the ip datagram.
+	
+	nowadays trailer encapsulation is deprecated.
+	
+2.4 SLIP: Serial Line IP.
+	
+	SLIP stands for serial line ip. it is a simple form of encapsulation for ip datagrams on serial lines.
+	the following rules sepcify the framing used by SLIP:
+	1. the ip datagram is terminated by the special character called END(0xc0). also, to pervent any line noise before the datagram from being interpreted as part of this datagram, most implementations transmit an END character at the beginning of the datagram too.
+	2. if a byte of the ip datagram equals the END character, the 2-byte sequence 0xdb, 0xdc is transmitted instead.
+	(the special character , 0xdb, is called the SLIP ESC character).
+	3. if a byte of the IP datagram equals the SLIP ESC character, the 2-byte sequence 0xdb, 0xdd is transmitted instead.
+	
+	SLIP is a simple framing method, it has some deficiencies:
+	1. each end must know the other's ip address. there is no method for one end to inform the other of its ip address.
+	2. there is no type field.  if a serial line is used for SLIP, it can't be used for some other protocol at the same time.
+	3. there is no checksum added by SLIP, it's up to the higher layers to detect this.
+	
+2.5. Compressed SLIP.
+	1. CSLIP normally reduces the 40-byte header to 3 or 5 bytes.
+	2. on each of the CSLIP link maintains the state of up to 16 tcp connections.
+	3. it knows that some of the fields in the two headers for a given connection normally don't change.
+	4. of the fields that do change, most change by a small positive amount. these smaller headers greatly improve the interactive response time.
+	
+2.6 PPP: Point-to-Point Protocol
+	PPP, corrects all the deficiencies in SLIP, it consists of three components:
+	1. a way to encapsulate ip datagrams on a serial link.
+	2. A Link control protocol(LCP) to establish, configure, and test the data-link connection.
+	3. a family of network control protocols (NCPs) specific to different network layer protocols.
+	
+	PPP frames:
+	1. each frames begins and ends with a flag byte whose value is 0x7e.   1-byte * 2
+	2. followed by an address byte whose value is always oxff			   1-byte * 1
+	3. and then a control byte, with a value of 0x03.					   1-byte * 1
+	4. next comes the protocol field, 									   2-byte * 1
+		value of 0x0021 means the information field is an ip datagram 
+		value of 0xc021 means information field is link control data,
+		value of ox8021 is for network control data.
+	5. the CRC field(OR FCS, for frame check sequence) is a cyclic redundancy check, to detect errors in the frame.
+	6. since the byte value 0x7e is the flag character, PPP needs to escape this byte when it appears in the information field.
+	
+		
+
+	
+	
 	
 	
 	
