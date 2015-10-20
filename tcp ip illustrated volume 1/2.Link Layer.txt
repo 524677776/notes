@@ -46,6 +46,8 @@
 	
 2.4 SLIP: Serial Line IP.
 	
+	speed : 19200 bits/sec or below.
+	
 	SLIP stands for serial line ip. it is a simple form of encapsulation for ip datagrams on serial lines.
 	the following rules sepcify the framing used by SLIP:
 	1. the ip datagram is terminated by the special character called END(0xc0). also, to pervent any line noise before the datagram from being interpreted as part of this datagram, most implementations transmit an END character at the beginning of the datagram too.
@@ -81,8 +83,52 @@
 	5. the CRC field(OR FCS, for frame check sequence) is a cyclic redundancy check, to detect errors in the frame.
 	6. since the byte value 0x7e is the flag character, PPP needs to escape this byte when it appears in the information field.
 	
+	on synchronous link using bit stuffing to escape hte flag character.
+	on asynchronous links the special byte 0x7d is used as an escape character.
+	
+	PPP advantages:
+		1. support for multiple protocols on a single serial line, not just ip datagrams,
+		2. a cyclic redundancy check on every frame.
+		3. dynamic negotiation of the ip address for each end
+		4. tcp and ip header compression similar to CSLIP,
+		5. a link control protocol for negotiating many data-link options.
 		
+2.7 Lookback Interface.
+	the class A network Id 127 is reserved for the lookback interface.
 
+	1. everything send to the loopback address appears as ip input.
+	2. datagrams send to a broadcast address or a multicast address are copied to the loopback interface and sent out on the ethernet.
+	3. anything sent to one of the host's own ip address is sent to the loopback interface.
+	
+2.8 MTU.
+	the maxinum transmission unit.
+	
+	$netstat -in
+	
+	if ip has a datagram to send, and the datagram is larger than the link layer's MTU, IP performs fragmentation, breaking the datagram up into smaller pieces(fragments), so that each fragment is smaller than the MTU.
+	
+2.9 Path MTU.
+
+	the smallest MTU of any data link that packets traverse between the two hosts, this is called path MTU.
+	
+2.10 Serial Line Throughput Calculations.
+
+  if the line speed is 9600 bits/sec, with 8 bits per byte, plus 1 start bit and 1 stop bit, the line speed is 960 bytes/sec.   (1 + 8 + 1) bits = 1 byte , transferring a 1024-byte packet at this speed takes 1066ms.
+  
+  SLIP 533 ms.
+	
+  waiting 533ms is unacceptable for interactive response. 
+  hubman factors studies have found that an interactive response time longer than 100-200ms is preceived as bad.
+
+2.11 Sunmmary.
+		
+	both SLIP and PPP are often used on slow links, both porvide a way to compress the common fields that don't ofen change. this provides better interactive response.
+	
+	access to loopback interface is either through the special loopback address, or by sending ip datagrams to one of the host's own ip addresses.
+	
+	loopback data has been completely processed by the transport layer and by IP when it loops around to go up the protocol stack.
+	
+	
 	
 	
 	

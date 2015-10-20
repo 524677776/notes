@@ -1,0 +1,60 @@
+3.1 Introduction.
+
+	all TCP, UDP, ICMP, and IGMP data gets transmitted as IP datagrams.
+	IP provides an unreliable, connectionless datagram delivery service.
+	
+	1. by unreliable we mean there are no guarantees that an IP datagram successfully gets to its destination.
+	IP has a simple error handling algorithm: throw away the datagram and try to send an ICMP message back to the source.
+	any required reliability must be provided by the upper layers.
+	
+	2. the term connectionless means that IP does not maintain any state information about successive datagrams.
+	each datagram is handled independently from all other datagrams.
+	it can get delivery out of order.
+	
+	IP routing
+	IP header
+	subnetting
+	commands: ifconfg, netstat.
+	
+3.2 IP header.
+	
+	the normal size of the IP header is 20 bytes, unless options are present. 20*8= 160 bits.
+	
+	the 4 bytes in the 32-bit value are transmitted in the order:
+	
+	4 bytes = 8 bits.
+	
+	00 - 07 
+	08 - 15
+    16 - 23
+    23 - 26
+    26 - 31
+	
+	bits 0-7 first, then 8-15, then 16-23, and bits 24-31 last.
+	this is called big endian byte ordering, which is the byte ordering required for all binary integers in the TCP/IP headers as they traverse a network. this is called the network byte order.
+
+	e.g 90AB12CD
+	
+	big endian: store the most significant byte in the smallest address.
+	1000 90
+	1001 AB
+	1002 12
+	1003 CD
+	
+	little endian: you store the least significant byte in the smallest address.
+	1000 CD
+	1001 12
+	1002 AB
+	1003 90
+	
+	little endian must convert the header values into the network byte order before transmitting the data.
+	
+	the hader length is the number of 32-bit words in the header, including any options.
+	since this is a 4-bit field, it limits the header to 60 bytes. the normal value of this field is 5.
+	
+	the type-of-service field (TOS) is composed of a 3-bit precedence field
+	
+	
+	
+	
+	
