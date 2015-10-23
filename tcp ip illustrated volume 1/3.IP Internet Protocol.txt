@@ -122,8 +122,23 @@
 	an IP address = netid + subnetid + hostid
 	
 3.5 Subnet Mask
+	used to specified how many bits are to be used for the subnet ID and how many bits are for the host ID.
+	the mask is a 32-bit value containing one bits for the network ID and subnet ID, and zero bits for the host ID.
 	
+	ip address and subnet mask , a host can determine if an ip datagram is destined for:
+		1. a host on its own subnet
+		2. a host on a different subnet on its own network
+		3. a host on a different network.
 	
+3.6 Special Case IP addresses.
+3.7 A Subnet Example
+
+3.8 if-config Command.
+3.9 netstat Command.
+3.10 IP Futures.
+3.11 Summary.
+
+
 	
 	
 
