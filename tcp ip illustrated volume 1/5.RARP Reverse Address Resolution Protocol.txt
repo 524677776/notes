@@ -1,0 +1,59 @@
+5.1 Introduction
+	with local disk system bootstrapped, it normally obtains its ip address from a configuration file that's read from a disk file.
+	
+	each system on a network has a unique hardware address.
+	
+	the principle of rarp is for the diskless system to read its unique hardware address from the interface card and send an rarp request asking for someone to reply with the diskless system's ip address.
+	
+5.2 rarp packet format
+	
+	arp package format:
+	
+	ethernet destination address
+	ethernet source address
+	frame type
+	hard type  value 1 is for an ethernet 
+	prot type  value 0x0800 is for ip address 
+	hard size  
+	prot size 
+	op  		value 1 is an arp request 
+				value 2 is an arp reply 
+				value 3 is an rarp request
+				value 4 is an rarp reply
+	sender's ethernet address
+	sender's protocol address 
+	target ethernet address
+	target protocol address
+	
+	rarp frame type is 0x8035 for an rarp request or reply.
+	op field value 3 and 4
+	the rarp request is broadcast and the rarp reply is normally unicast.
+	
+5.3 rarp examples
+	tftp: trivial file transfer protocol
+	
+5.4 rarp server design
+
+	complications:
+		1.the rarp server normally provides the mapping from a hardware address to an ip address for many hosts
+		2.the rarp requests are transmitted as ethernet frames with a specific ethernet frame type field(0x8035), this means an rarp server must have some way of sending and receiving ethernet frame of this type.
+		2.the rarp requests are sent as hardware-level broadcasts.this means they are not forwarded by routers.
+
+	rarp servers as user processes.
+	multiple rarp servers per network
+	
+5.5 sunmmary.
+	rarp is used by many diskless systems to obtain their ip address when bootstrapped.
+	
+	the rarp packet format is nearly identical to the arp packet.
+	
+	an rarp request is broadcast, identifying the sender's hardware address, asking for anyone to respond with the sender's ip address.
+	
+	the reply is normally unicast.
+	
+	problems with rarp include its use of a link-layer broadcast, preventing most routers from forwarding an rarp request, and the minimal information returned: just the system's ip address.
+	
+	
+	
+	
+	

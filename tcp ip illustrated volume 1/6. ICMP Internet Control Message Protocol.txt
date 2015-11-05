@@ -1,0 +1,24 @@
+6.1 introduction.
+	icmp is considered part of the ip layer.
+	it communicates error messages and other conditions that require attention.
+	icmp messages are transmitted within ip datagrams.
+		ip datagram : ip header(20 bytes) + icmp message.
+		
+	the format of an icmp message:
+		8-bit type + 8-bit code + 16bit checksum
+		
+6.2 icmp message types.
+	query message  
+	error message
+	
+	icmp error message always contains the ip header and the first 8 bytes of the ip datagram that caused the icmp error to be generated.
+	
+	an icmp error message is never generated in response to :
+	1. an icmp error message ( an icmp error message may , however, be generated in response to an icmp query message.)
+	2. a datagram destined to an ip broadcast address or an ip multicast address ( a class d address)
+	3. a datagram sent as a link-layer broadcast.
+	4. a fragment other than the first.
+	5. a datagram whose than source address does not define a single host.this means the source address cannot be a zero address, a loopback address, a broadcast address, or a multicast address.
+	
+6.3 icmp address mask request and reply
+	the icmp address mask request is intended for a diskless system to obtain its subnet mask at bootstrap time.
