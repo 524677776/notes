@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<item value="1" key="RUNTIMES_PREFERENCE_PAGE.sortColumn"/>
-	<item value="0.5420561" key="RUNTIMES_PREFERENCE_PAGE.column1"/>
-	<item value="0.30373833" key="RUNTIMES_PREFERENCE_PAGE.column0"/>
-	<section name="org.erlide.ui.dialogs.ProjectSelectionDialog">
-		<item value="true" key="ProjectSelectionDialog.show_all"/>
-	</section>
-</section>
